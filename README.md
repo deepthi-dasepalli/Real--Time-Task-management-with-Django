@@ -17,7 +17,7 @@ This project is a real-time task management dashboard built using Django, Django
 - Django Channels 4.x
 - Bootstrap 5
 - SortableJS for drag-and-drop
-- SQLite (default) database
+- MySQL database
 
 ## Setup Instructions
 
@@ -27,19 +27,23 @@ This project is a real-time task management dashboard built using Django, Django
    ```
    pip install -r requirements.txt
    ```
-4. Run migrations:
+4. Set up MySQL database:
+   - Install MySQL server if not already installed
+   - Create a database named 'taskdash'
+   - Update `taskdash/settings.py` with your MySQL credentials (USER, PASSWORD, HOST, PORT)
+5. Run migrations:
    ```
    python manage.py migrate
    ```
-5. Create a superuser:
+6. Create a superuser:
    ```
    python manage.py createsuperuser
    ```
-6. Run the development server:
+7. Run the development server:
    ```
    python manage.py runserver
    ```
-7. Access the app at `http://127.0.0.1:8000/`
+8. Access the app at `http://127.0.0.1:8000/`
 
 ## Testing
 
