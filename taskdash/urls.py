@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
 from rest_framework import routers
-from tasks.views import TaskViewSet, dashboard
+from tasks.views import TaskViewSet, dashboard, register, create_task
 
 router = routers.DefaultRouter()
 router.register(r'tasks', TaskViewSet, basename='task')
@@ -26,5 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/register/', register, name='register'),
     path('', dashboard, name='dashboard'),
-]
+    path('tasks/create/', create_task, name='create_task'),
+    path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico'), name='favicon'),
+] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
